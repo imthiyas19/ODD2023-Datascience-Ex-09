@@ -18,5 +18,155 @@ Apply data visualization techniques to identify the patterns of the data.
 
 
 # CODE
+```
+import seaborn as sns
+import pandas as pd
+import matplotlib.pyplot as plt
+df=sns.load_dataset("tips")
+print(df)
+```
 
-# OUPUT
+<img width="230" alt="278807457-1b3fbb99-9a74-4b53-8ce2-497d3d66105e" src="https://github.com/imthiyas19/ODD2023-Datascience-Ex-09/assets/120353416/5815fc1d-ad56-45b4-ae36-4582f7d2f449">
+```
+df.isnull().sum()
+```
+
+
+<img width="74" alt="278807508-6bde75cc-013e-40a1-a33f-c2d87d475f84" src="https://github.com/imthiyas19/ODD2023-Datascience-Ex-09/assets/120353416/f90e3728-ad33-43ef-8328-8d50c69c376a">
+```
+plt.figure(figsize=(5,5))
+plt.title("data with outliners")
+df.boxplot()
+plt.show()
+```
+
+
+
+
+<img width="218" alt="278807545-eee15327-56f0-41cd-8ac6-b521415b95fb" src="https://github.com/imthiyas19/ODD2023-Datascience-Ex-09/assets/120353416/44fd5353-a8e0-4206-8439-c067f08b09f4">
+```
+plt.figure(figsize=(5,5))
+cols=["size","tip","total_bill"]
+q1=df[cols].quantile(0.25)
+q3=df[cols].quantile(0.75)
+iqr=q3-q1
+df=df[~((df[cols]<(q1-1.5*iqr))|(df[cols]>(q3+1.5*iqr))).any(axis=1)]
+plt.title("dataset after removing outliners")
+df.boxplot()
+plt.show()
+```
+
+
+<img width="218" alt="278807616-7927a9a1-2722-43d4-8917-ea4d9e6f0450" src="https://github.com/imthiyas19/ODD2023-Datascience-Ex-09/assets/120353416/40163c6e-e40d-4bef-a721-9979b280a9fe">
+
+```
+sns.barplot(x=df["day"],y=df["total_bill"],hue=df["day"])
+plt.legend(loc="center")
+plt.title("highest total bill amount by day of the week")
+```
+
+
+
+
+
+
+<img width="283" alt="278807645-ea4ba09f-7399-4a56-8f27-a2185acb7016" src="https://github.com/imthiyas19/ODD2023-Datascience-Ex-09/assets/120353416/4127bfec-47e0-497b-aae7-7e78ec22979f">
+
+```
+sns.boxplot(x=df["smoker"],y=df["tip"],hue=df["smoker"])
+plt.title("average tip amount given by smokers and non-smokers")
+```
+
+
+
+<img width="280" alt="278807697-3ef7ca9a-79d7-43e8-b4ff-0efcbf23dfcc" src="https://github.com/imthiyas19/ODD2023-Datascience-Ex-09/assets/120353416/5502fc2b-e37b-4abf-983a-440d47c29b72">
+
+```
+df["tip_percent"]=df["tip"] / df["total_bill"]
+sns.scatterplot(x=df['size'], y=df['tip_percent'],data=df)
+plt.title("Tip Percentage by Dining Party Size")
+```
+
+
+
+
+<img width="289" alt="278807741-85297eb7-efe1-4495-a2d6-4576d383d014" src="https://github.com/imthiyas19/ODD2023-Datascience-Ex-09/assets/120353416/e90b2a41-aaae-4346-be3f-736569b3584c">
+
+```
+sns.boxplot(x=df["sex"],y=df["tip"],hue=df["sex"])
+plt.title("tips based on gender")
+```
+
+
+<img width="279" alt="278807799-04734581-41dd-4f5b-b2e4-85afc1bb9093" src="https://github.com/imthiyas19/ODD2023-Datascience-Ex-09/assets/120353416/8c3f5d21-a884-4bfe-a253-e79fc3f0e571">
+
+
+```
+sns.scatterplot(x=df["day"],y=df["total_bill"],hue=df["day"])
+plt.legend(loc="best")
+plt.title("total bill amount by day of te week")
+```
+
+
+
+
+
+<img width="293" alt="278807838-2fda0016-1b0c-45e9-9f26-102c96d4c22c" src="https://github.com/imthiyas19/ODD2023-Datascience-Ex-09/assets/120353416/5b99383d-58c6-4c2e-ac3f-7ee0fcf83741">
+
+```
+sns.histplot(data=df, x="total_bill", hue="time", element="step", stat="density")
+plt.title("Distribution of Total Bill Amounts by Time of Day")
+plt.show()
+```
+
+
+
+<img width="293" alt="278807865-7d378417-a9a6-4a10-909a-83d61a1e9da9" src="https://github.com/imthiyas19/ODD2023-Datascience-Ex-09/assets/120353416/bee78bb0-0fb5-4c37-bebe-60fe9792fda7">
+
+```
+sns.barplot(x=df["size"],y=df["total_bill"],hue=df["size"])
+plt.title("average total bill amount by dinning party size")
+```
+
+
+
+
+<img width="286" alt="278807884-0c0dbc52-ce62-4957-9da0-dc77048fd09e" src="https://github.com/imthiyas19/ODD2023-Datascience-Ex-09/assets/120353416/87e8bd9c-37df-4fce-a9e6-61cec6d845cf">
+
+```
+sns.boxplot(x="day", y="tip", data=df)
+plt.title("Tip Amount by Day of Week")
+plt.show()
+```
+
+
+
+
+
+<img width="278" alt="278807916-f24cff71-ea97-44d8-8c43-5fe29d3fb0ba" src="https://github.com/imthiyas19/ODD2023-Datascience-Ex-09/assets/120353416/6eda9f07-1529-4af3-a8eb-a29f3d1f0714">
+
+```
+sns.violinplot(x="time",y="tip",data=df)
+plt.title("tip amount time of day")
+```
+
+<img width="284" alt="278807943-85c6cfba-377f-4a38-9487-a90556035ac8" src="https://github.com/imthiyas19/ODD2023-Datascience-Ex-09/assets/120353416/b44e5ebd-2772-48a4-bf39-385b5583b57b">
+```
+sns.scatterplot(x="total_bill",y="tip",data=df)
+plt.title("Correlation between Tip Amount and Total Bill Amount")
+plt.show()
+```
+
+
+
+
+
+<img width="280" alt="278807977-67b651a6-ac90-4793-8d11-b99af66067ca" src="https://github.com/imthiyas19/ODD2023-Datascience-Ex-09/assets/120353416/49f982d0-4bb4-4b1d-8aea-c0db31a508fa">
+
+
+# RESULT:
+Thus, Data Visualization on a complex dataset and save the data to a file has been performed successfully.
+
+
+
+
