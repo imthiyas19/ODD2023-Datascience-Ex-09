@@ -27,12 +27,16 @@ print(df)
 ```
 
 <img width="230" alt="278807457-1b3fbb99-9a74-4b53-8ce2-497d3d66105e" src="https://github.com/imthiyas19/ODD2023-Datascience-Ex-09/assets/120353416/5815fc1d-ad56-45b4-ae36-4582f7d2f449">
+
+
 ```
 df.isnull().sum()
 ```
 
 
 <img width="74" alt="278807508-6bde75cc-013e-40a1-a33f-c2d87d475f84" src="https://github.com/imthiyas19/ODD2023-Datascience-Ex-09/assets/120353416/f90e3728-ad33-43ef-8328-8d50c69c376a">
+
+
 ```
 plt.figure(figsize=(5,5))
 plt.title("data with outliners")
