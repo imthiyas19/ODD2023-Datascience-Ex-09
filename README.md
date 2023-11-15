@@ -48,6 +48,7 @@ plt.show()
 
 
 <img width="218" alt="278807545-eee15327-56f0-41cd-8ac6-b521415b95fb" src="https://github.com/imthiyas19/ODD2023-Datascience-Ex-09/assets/120353416/44fd5353-a8e0-4206-8439-c067f08b09f4">
+
 ```
 plt.figure(figsize=(5,5))
 cols=["size","tip","total_bill"]
@@ -155,6 +156,7 @@ plt.title("tip amount time of day")
 ```
 
 <img width="284" alt="278807943-85c6cfba-377f-4a38-9487-a90556035ac8" src="https://github.com/imthiyas19/ODD2023-Datascience-Ex-09/assets/120353416/b44e5ebd-2772-48a4-bf39-385b5583b57b">
+
 ```
 sns.scatterplot(x="total_bill",y="tip",data=df)
 plt.title("Correlation between Tip Amount and Total Bill Amount")
